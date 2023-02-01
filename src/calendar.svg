@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="82.780182mm"
+   height="82.780182mm"
+   viewBox="0 0 82.780182 82.780182"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4065">
+      <rect
+         style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.20648;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill"
+         id="rect4067"
+         width="119.27883"
+         height="81.781181"
+         x="128.81868"
+         y="112.57041"
+         ry="20.323921" />
+    </clipPath>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-50.257645,-87.231243)">
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#515151;stroke-width:0.999;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill;stroke-opacity:0.57470345"
+       id="rect111-5"
+       width="81.781181"
+       height="81.781181"
+       x="50.757145"
+       y="87.730743"
+       ry="9.336381" />
+    <rect
+       style="fill:#ffe6d5;fill-opacity:1;stroke:none;stroke-width:0.999;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill"
+       id="rect4442"
+       width="1.3514032"
+       height="0.27026772"
+       x="90.972031"
+       y="128.48621"
+       ry="0.13513386" />
+    <rect
+       style="fill:#ffe6d5;fill-opacity:1;stroke:none;stroke-width:0.999;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill"
+       id="rect4442-7"
+       width="1.3514032"
+       height="0.27026772"
+       x="112.55277"
+       y="205.62946"
+       ry="0.13513386" />
+    <path
+       id="rect111-5-6"
+       style="fill:#942020;fill-opacity:1;stroke:#ffffff;stroke-width:0.999;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill"
+       d="m 60.093591,87.730743 c -5.17235,0 -9.336381,4.16403 -9.336381,9.33638 v 14.069947 h 81.78105 V 97.067123 c 0,-5.17235 -4.16403,-9.33638 -9.33638,-9.33638 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:53.8499px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.34625"
+       x="120.02666"
+       y="157.17191"
+       id="text4124-54"><tspan
+         id="tspan4122-7"
+         style="text-align:center;text-anchor:middle;stroke-width:1.34625"
+         x="90.974625"
+         y="157.17191">34</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:27.4001px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.685004"
+       x="114.44547"
+       y="109.33434"
+       id="text4124-5-5"><tspan
+         id="tspan4122-3-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.4001px;font-family:'Cascadia Code';-inkscape-font-specification:'Cascadia Code, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.685004"
+         x="91.915314"
+         y="109.33434">Sol</tspan></text>
+    <rect
+       style="fill:#ffe6d5;fill-opacity:1;stroke:none;stroke-width:0.999;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill"
+       id="rect4442-7-6"
+       width="1.3514032"
+       height="0.27026772"
+       x="186.84314"
+       y="268.80731"
+       ry="0.13513386" />
+  </g>
+</svg>
