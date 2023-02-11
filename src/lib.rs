@@ -35,6 +35,8 @@ async fn axum() -> shuttle_service::ShuttleAxum {
 
 pub fn setup_router() -> Router {
     Router::new()
+        .route("/favicon.ico", get(favicon))
+        .route("/favicon.svg", get(favicon))
         .route("/calendar.svg", get(favicon))
         .route("/", get(index))
 }
