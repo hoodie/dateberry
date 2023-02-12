@@ -1,5 +1,5 @@
 alias b := build
-alias r := run
+alias d := devt 
 
 app: 
     yarn --cwd app vite build
@@ -8,5 +8,9 @@ app:
 build: app
     cargo build
 
-run:  build
-    cargo shuttle run
+serve: 
+    cargo run --example local
+    
+dev: app
+    @just serve
+#   cargo shuttle run
