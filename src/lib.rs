@@ -11,12 +11,14 @@ use num_traits::FromPrimitive;
 use once_cell::sync::OnceCell;
 use request_calendar::RequestCalendar;
 use serde::{Deserialize, Serialize};
+use start_record::StartRecord;
 use sync_wrapper::SyncWrapper;
 
 pub mod favicon;
 pub mod request_calendar;
+pub mod start_record;
 
-static STARTED: OnceCell<std::time::Instant> = OnceCell::new();
+static STARTED: OnceCell<StartRecord> = OnceCell::new();
 
 async fn favicon() -> axum::response::Result<([(HeaderName, &'static str); 1], String)> {
     // yapp, this is probably wrong for some people for half a day
@@ -27,9 +29,18 @@ async fn favicon() -> axum::response::Result<([(HeaderName, &'static str); 1], S
         .map_err(|e| axum::response::ErrorResponse::from(e.to_string()))?;
     Ok(([(header::CONTENT_TYPE, "image/svg+xml")], svg))
 }
+
 async fn uptime() -> String {
-    if let Some(started) = STARTED.get() {
-        humantime::Duration::from(std::time::Instant::now() - *started).to_string()
+    if let Some(StartRecord { instant, time }) = STARTED.get() {
+        let timestamp = humantime::Timestamp::from(*time);
+        let elapsed = timestamp
+            .elapsed()
+            .map(humantime::Duration::from)
+            .map_or("🤷".into(), |ht| ht.to_string());
+        let time = humantime::Timestamp::from(*time).to_string();
+        let duration = humantime::Duration::from(std::time::Instant::now() - *instant).to_string();
+
+        format!("startet at {time}\nrunning {duration}\nrunning {elapsed} (system time)")
     } else {
         String::from("I don't know")
     }
@@ -86,7 +97,7 @@ async fn index(Query(calendar): Query<RequestCalendar>) -> Html<&'static str> {
 // }
 
 pub fn record_start_time() {
-    if STARTED.set(std::time::Instant::now()).is_err() {
+    if STARTED.set(StartRecord::now()).is_err() {
         println!("start time was already recorded");
     }
 }
