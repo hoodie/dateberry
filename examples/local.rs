@@ -1,4 +1,3 @@
-use axum::{response::Html, routing::get, Router};
 use std::net::SocketAddr;
 
 #[tokio::main]
@@ -7,8 +6,8 @@ async fn main() {
     let app = dateberry::setup_router();
 
     // run it
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    println!("listening on {}", addr);
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+    println!("listening on {addr}");
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await

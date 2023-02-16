@@ -6,6 +6,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 export default defineConfig({
   plugins: [svelte(), viteSingleFile()],
   server: {
-    host: "0.0.0.0"
+    host: "0.0.0.0",
+    port: 3000
   }
 })

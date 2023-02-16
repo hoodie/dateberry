@@ -1,8 +1,12 @@
+default: dev
 alias b := build
-alias d := devt 
+alias d := dev
+
+ui:
+    yarn --cwd $PWD/app vite dev
 
 app: 
-    yarn --cwd app vite build
+    yarn --cwd $PWD/app vite build
     cp app/dist/index.html src/
 
 build: app

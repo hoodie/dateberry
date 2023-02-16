@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { query, configUrl } from "../store";
+  import { query, configUrl, configQuery } from "../store";
   import Timezone from "./Timezone.svelte";
   import Reminder from "./Reminder.svelte";
 
   const trimmedUtc = (date: Date) =>
     date.toISOString().replaceAll(/:\d\d\.\d\d\dZ/g, "");
 
-  $: durationH = $query.duration && `${$query.duration}h`;
+  // $: durationH = $query.duration && `${$query.duration}h`;
 
   function handleSubmit(e) {
     console.log(e);
@@ -14,26 +14,27 @@
     return e;
   }
 
-  const default_title = undefined; // "Important Meeting";
+  const default_summary = undefined; // "Important Meeting";
   const default_location = undefined; // "Meeting Room Five";
+  const default_description = undefined; // "Meeting Room Five";
   const default_start = trimmedUtc(new Date());
   const default_end = trimmedUtc(new Date());
-  const default_duration = "01:00";
+  // const default_duration = "01:00";
   const default_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   query.update((stored) => {
     console.log("updated", stored);
 
-    const { start, end, duration, location, title, timezone } = stored;
+    const { start, end, location, description, summary, timezone } = stored;
 
     return {
       ...stored,
       start: start || default_start,
       end: end || default_end,
-      title: title || default_title,
+      summary: summary || default_summary,
+      description: description || default_description,
       timezone: timezone || default_timezone,
       location: location || default_location,
-      duration: duration || default_duration,
     };
   });
 
@@ -45,17 +46,17 @@
 <form on:submit={handleSubmit}>
   <table>
     <tr>
-      <th> <label for="title"> Title </label> </th>
+      <th> <label for="summary"> summary </label> </th>
       <td
         ><input
           type="text"
-          name="title"
-          id="title"
-          bind:value={$query.title}
-          placeholder="title"
+          name="summary"
+          id="summary"
+          bind:value={$query.summary}
+          placeholder="summary"
         /></td
       >
-      <td class="preview" class:hidden={!$query.debug}>{$query.title}</td>
+      <td class="preview" class:hidden={!$query.debug}>{$query.summary}</td>
     </tr>
 
     <tr>
@@ -113,6 +114,7 @@
       <td class="preview" class:hidden={!$query.debug}> {$query.end} </td>
     </tr>
 
+    <!--
     <tr>
       <th><label for="duration">duration</label></th>
       <td>
@@ -125,11 +127,34 @@
       </td>
       <td class="preview" class:hidden={!$query.debug}> {durationH} </td>
     </tr>
+    -->
 
     <tr>
       <th><label for="timezone">timezone</label></th>
-      <td> <Timezone bind:selectedZone={$query.timezone} /> </td>
+      <td>
+        <Timezone bind:selectedZone={$query.timezone} />
+        <input
+          type="hidden"
+          name="timezone"
+          id="timezone"
+          bind:value={$query.timezone}
+          readonly
+        />
+      </td>
       <td class="preview" class:hidden={!$query.debug}> {$query.timezone} </td>
+    </tr>
+
+    <tr>
+      <th><label for="reminder">reminder</label></th>
+      <td colspan="2"
+        ><textarea
+          name="description"
+          id=""
+          cols="30"
+          rows="10"
+          bind:value={$query.description}
+        /></td
+      >
     </tr>
 
     <tr>
@@ -157,9 +182,8 @@
 
     <tr>
       <th />
-      <td />
       <td>
-        <input type="submit" value="send" />
+        <input type="submit" value="store" />
       </td>
     </tr>
   </table>

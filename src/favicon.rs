@@ -1,5 +1,3 @@
-#![allow(clippy::uninlined_format_args)]
-
 use std::fmt::Write;
 use svg::{node::element::tag::Type, parser::Event};
 
