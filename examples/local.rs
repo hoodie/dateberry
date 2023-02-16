@@ -1,7 +1,10 @@
 use std::net::SocketAddr;
 
+use dateberry::record_start_time;
+
 #[tokio::main]
 async fn main() {
+    record_start_time();
     // build our application with a route
     let app = dateberry::setup_router();
 

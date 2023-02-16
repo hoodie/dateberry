@@ -8,12 +8,15 @@ use axum::{
 use chrono::Datelike;
 use icalendar::{Calendar, Component};
 use num_traits::FromPrimitive;
+use once_cell::sync::OnceCell;
 use request_calendar::RequestCalendar;
 use serde::{Deserialize, Serialize};
 use sync_wrapper::SyncWrapper;
 
 pub mod favicon;
 pub mod request_calendar;
+
+static STARTED: OnceCell<std::time::Instant> = OnceCell::new();
 
 async fn favicon() -> axum::response::Result<([(HeaderName, &'static str); 1], String)> {
     // yapp, this is probably wrong for some people for half a day
@@ -23,6 +26,13 @@ async fn favicon() -> axum::response::Result<([(HeaderName, &'static str); 1], S
     let svg = favicon::todays_calendar(month, &format!("{day}"))
         .map_err(|e| axum::response::ErrorResponse::from(e.to_string()))?;
     Ok(([(header::CONTENT_TYPE, "image/svg+xml")], svg))
+}
+async fn uptime() -> String {
+    if let Some(started) = STARTED.get() {
+        humantime::Duration::from(std::time::Instant::now() - *started).to_string()
+    } else {
+        String::from("I don't know")
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -75,8 +85,15 @@ async fn index(Query(calendar): Query<RequestCalendar>) -> Html<&'static str> {
 //     Html(include_str!("index.html"))
 // }
 
+pub fn record_start_time() {
+    if STARTED.set(std::time::Instant::now()).is_err() {
+        println!("start time was already recorded");
+    }
+}
+
 #[shuttle_service::main]
 async fn axum() -> shuttle_service::ShuttleAxum {
+    record_start_time();
     let router = setup_router();
 
     let sync_wrapper = SyncWrapper::new(router);
@@ -91,5 +108,6 @@ pub fn setup_router() -> Router {
         .route("/calendar.svg", get(favicon))
         .route("/calendar.:ext", get(calendar))
         .route("/calendar.:ext", post(calendar))
+        .route("/uptime", get(uptime))
         .route("/", get(index))
 }
