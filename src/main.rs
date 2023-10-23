@@ -12,7 +12,6 @@ use once_cell::sync::OnceCell;
 use request_calendar::RequestCalendar;
 use serde::{Deserialize, Serialize};
 use start_record::StartRecord;
-use sync_wrapper::SyncWrapper;
 
 pub mod favicon;
 pub mod request_calendar;
@@ -102,14 +101,12 @@ pub fn record_start_time() {
     }
 }
 
-#[shuttle_service::main]
-async fn axum() -> shuttle_service::ShuttleAxum {
+#[shuttle_runtime::main]
+async fn axum() -> shuttle_axum::ShuttleAxum {
     record_start_time();
     let router = setup_router();
 
-    let sync_wrapper = SyncWrapper::new(router);
-
-    Ok(sync_wrapper)
+    Ok(router.into())
 }
 
 pub fn setup_router() -> Router {
