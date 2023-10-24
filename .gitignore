@@ -2,3 +2,5 @@ target
 node_modules
 .yarn
 .DS_Store
+.pnp.cjs
+.pnp.loader.mjs
