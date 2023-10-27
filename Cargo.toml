@@ -4,12 +4,18 @@ version = "0.1.0"
 edition = "2021"
 publish = false
 
+[lib]
+
+[[bin]]
+name = "shuttle_service"
+path = "src/bin/shuttle_service.rs"
+
 [dependencies]
-shuttle-runtime = { version = "0.30.0" }
-shuttle-axum = { version = "0.30.0" }
+shuttle-runtime = { version = "0.30.1" }
+shuttle-axum = { version = "0.30.1" }
 axum = { version = "0.6", features = ["headers"] }
 sync_wrapper = "0.1.2"
-svg = "0.13"
+svg = "0.14"
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
 chrono-tz = "0.8.3"
 num-traits = "0.2"

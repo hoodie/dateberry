@@ -101,14 +101,6 @@ pub fn record_start_time() {
     }
 }
 
-#[shuttle_runtime::main]
-async fn axum() -> shuttle_axum::ShuttleAxum {
-    record_start_time();
-    let router = setup_router();
-
-    Ok(router.into())
-}
-
 pub fn setup_router() -> Router {
     Router::new()
         .route("/favicon.ico", get(favicon))
