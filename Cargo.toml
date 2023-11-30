@@ -7,21 +7,21 @@ publish = false
 [lib]
 
 [[bin]]
-name = "shuttle_service"
+name = "dateberry"
 path = "src/bin/shuttle_service.rs"
 
 [dependencies]
-shuttle-runtime = { version = "0.30.1" }
-shuttle-axum = { version = "0.30.1" }
+shuttle-runtime = { version = "0.34" }
+shuttle-axum = { version = "0.34" }
 axum = { version = "0.6", features = ["headers"] }
 sync_wrapper = "0.1.2"
 svg = "0.14"
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
-chrono-tz = "0.8.3"
+chrono-tz = "0.8.4"
 num-traits = "0.2"
 serde = { version = "1.0", features = ["derive"] }
-icalendar = { version = "0.15", features = ["chrono-tz"] }
+icalendar = { version = "0.16", features = ["chrono-tz"] }
 iso8601 = { version = "0.6", features = ["chrono", "serde"] }
 once_cell = "1.18.0"
 humantime = "2.1.0"
-tokio = { version = "1.33", features = ["full"] }
+tokio = { version = "1.34", features = ["full"] }
